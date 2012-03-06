@@ -30,8 +30,13 @@ function sandbox_theme_display() {
 		<?php settings_errors(); ?>
 		
 		<form method="post" action="options.php">
+			
 			<?php settings_fields( 'sandbox_theme_display_options' ); ?>
-			<?php do_settings_sections( 'sandbox_theme_display_options' ); ?>			
+			<?php do_settings_sections( 'sandbox_theme_display_options' ); ?>	
+			
+			<?php settings_fields( 'sandbox_theme_social_options' ); ?>
+			<?php do_settings_sections( 'sandbox_theme_social_options' ); ?>	
+					
 			<?php submit_button(); ?>
 		</form>
 		
@@ -44,7 +49,7 @@ function sandbox_theme_display() {
  * ------------------------------------------------------------------------ */ 
 
 /**
- * Initializes the theme's options page by registering the Sections,
+ * Initializes the theme's display options page by registering the Sections,
  * Fields, and Settings.
  *
  * This function is registered with the 'admin_init' hook.
@@ -107,6 +112,57 @@ function sandbox_initialize_theme_options() {
 } // end sandbox_initialize_theme_options
 add_action('admin_init', 'sandbox_initialize_theme_options');
 
+/**
+ * Initializes the theme's social optoions by registering the Sections,
+ * Fields, and Settings.
+ *
+ * This function is registered with the 'admin_init' hook.
+ */ 
+function sandbox_theme_intialize_social_options() {
+
+	if( false == get_option( 'sandbox_theme_social_options' ) ) {	
+		add_option( 'sandbox_theme_social_options' );
+	} // end if
+	
+	add_settings_section(
+		'social_settings_section',			// ID used to identify this section and with which to register options
+		'Social Options',					// Title to be displayed on the administration page
+		'sandbox_social_options_callback',	// Callback used to render the description of the section
+		'sandbox_theme_social_options'		// Page on which to add this section of options
+	);
+	
+	add_settings_field(	
+		'twitter',						
+		'Twitter',							
+		'sandbox_twitter_callback',	
+		'sandbox_theme_social_options',	
+		'social_settings_section'			
+	);
+
+	add_settings_field(	
+		'facebook',						
+		'Facebook',							
+		'sandbox_facebook_callback',	
+		'sandbox_theme_social_options',	
+		'social_settings_section'			
+	);
+	
+	add_settings_field(	
+		'googleplus',						
+		'Google+',							
+		'sandbox_googleplus_callback',	
+		'sandbox_theme_social_options',	
+		'social_settings_section'			
+	);
+	
+	register_setting(
+		'sandbox_theme_social_options',
+		'sandbox_theme_social_options'
+	);
+	
+} // end sandbox_theme_intialize_social_options
+add_action( 'admin_init', 'sandbox_theme_intialize_social_options' );
+
 /* ------------------------------------------------------------------------ *
  * Section Callbacks
  * ------------------------------------------------------------------------ */ 
@@ -119,6 +175,16 @@ add_action('admin_init', 'sandbox_initialize_theme_options');
  */
 function sandbox_general_options_callback() {
 	echo '<p>Select which areas of content you wish to display.</p>';
+} // end sandbox_general_options_callback
+
+/**
+ * This function provides a simple description for the Social Options page. 
+ *
+ * It's called from the 'sandbox_theme_intialize_social_options' function by being passed as a parameter
+ * in the add_settings_section function.
+ */
+function sandbox_social_options_callback() {
+	echo '<p>Provide the URL to the social networks you\'d like to display.</p>';
 } // end sandbox_general_options_callback
 
 /* ------------------------------------------------------------------------ *
@@ -168,5 +234,49 @@ function sandbox_toggle_footer_callback($args) {
 	echo $html;
 	
 } // end sandbox_toggle_footer_callback
+
+function sandbox_twitter_callback() {
+	
+	// First, we read the social options collection
+	$options = get_option( 'sandbox_theme_social_options' );
+	
+	// Next, we need to make sure the element is defined in the options. If not, we'll set an empty string.
+	$url = '';
+	if( isset( $options['twitter'] ) ) {
+		$url = $options['twitter'];
+	} // end if
+	
+	// Render the output
+	echo '<input type="text" id="twitter" name="sandbox_theme_social_options[twitter]" value="' . $options['twitter'] . '" />';
+	
+} // end sandbox_twitter_callback
+
+function sandbox_facebook_callback() {
+	
+	$options = get_option( 'sandbox_theme_social_options' );
+	
+	$url = '';
+	if( isset( $options['facebook'] ) ) {
+		$url = $options['facebook'];
+	} // end if
+	
+	// Render the output
+	echo '<input type="text" id="facebook" name="sandbox_theme_social_options[facebook]" value="' . $options['facebook'] . '" />';
+	
+} // end sandbox_facebook_callback
+
+function sandbox_googleplus_callback() {
+	
+	$options = get_option( 'sandbox_theme_social_options' );
+	
+	$url = '';
+	if( isset( $options['googleplus'] ) ) {
+		$url = $options['googleplus'];
+	} // end if
+	
+	// Render the output
+	echo '<input type="text" id="googleplus" name="sandbox_theme_social_options[googleplus]" value="' . $options['googleplus'] . '" />';
+	
+} // end sandbox_googleplus_callback
 
 ?>
