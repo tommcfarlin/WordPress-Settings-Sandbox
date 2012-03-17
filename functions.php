@@ -157,7 +157,8 @@ function sandbox_theme_intialize_social_options() {
 	
 	register_setting(
 		'sandbox_theme_social_options',
-		'sandbox_theme_social_options'
+		'sandbox_theme_social_options',
+		'sandbox_theme_sanitize_social_options'
 	);
 	
 } // end sandbox_theme_intialize_social_options
@@ -278,5 +279,35 @@ function sandbox_googleplus_callback() {
 	echo '<input type="text" id="googleplus" name="sandbox_theme_social_options[googleplus]" value="' . $options['googleplus'] . '" />';
 	
 } // end sandbox_googleplus_callback
+
+/* ------------------------------------------------------------------------ *
+ * Setting Callbacks
+ * ------------------------------------------------------------------------ */ 
+ 
+ /**
+ * Sanitization callback for the social options. Since each of the social options are text inputs,
+ * this function loops through the incoming option and strips all tags and slashes from the value
+ * before serializing it.
+ *	
+ * @params	$input	The unsanitized collection of options.
+ *
+ * @returns			The collection of sanitized values.
+ */
+function sandbox_theme_sanitize_social_options( $input ) {
+	
+	$output = array();
+
+	foreach( $input as $key => $val ) {
+	
+		if( isset ( $input[$key] ) ) {
+			$output[$key] = esc_url_raw( strip_tags( stripslashes( $input[$key] ) ) );
+		} // end if	
+	
+	} // end foreach
+	
+	return apply_filters( 'sandbox_theme_sanitize_social_options', $output, $input );
+
+} // end sandbox_theme_sanitize_social_options
+
 
 ?>
