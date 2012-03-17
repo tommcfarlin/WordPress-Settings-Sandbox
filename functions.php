@@ -295,8 +295,10 @@ function sandbox_googleplus_callback() {
  */
 function sandbox_theme_sanitize_social_options( $input ) {
 	
+	// Define the array for the updated options
 	$output = array();
 
+	// Loop through each of the options sanitizing the data
 	foreach( $input as $key => $val ) {
 	
 		if( isset ( $input[$key] ) ) {
@@ -305,6 +307,7 @@ function sandbox_theme_sanitize_social_options( $input ) {
 	
 	} // end foreach
 	
+	// Return the new collection
 	return apply_filters( 'sandbox_theme_sanitize_social_options', $output, $input );
 
 } // end sandbox_theme_sanitize_social_options
