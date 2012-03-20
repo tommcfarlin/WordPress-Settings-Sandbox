@@ -1,6 +1,17 @@
 <?php
 
 /**
+ * Authors Note
+ * 3/20/2012: For current version in master:
+ *
+ * This tutorial will walk you through the process of introducing a new section of settings for theme options, but the article doesn't complete the process 
+ * please read more in this comment thread[0]. Know that I'm aware of it, I apologize for not clarifying this in the article, and I'll have the full working 
+ * version in the next article later this month!
+ *
+ * [0] http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-4-on-theme-options/#comment-18853
+ */
+
+/**
  * This function introduces a single theme menu option into the WordPress 'Appearance'
  * menu.
  */
@@ -30,14 +41,15 @@ function sandbox_theme_display() {
 		<?php settings_errors(); ?>
 		
 		<form method="post" action="options.php">
-			
+
 			<?php settings_fields( 'sandbox_theme_display_options' ); ?>
 			<?php do_settings_sections( 'sandbox_theme_display_options' ); ?>	
 			
 			<?php settings_fields( 'sandbox_theme_social_options' ); ?>
 			<?php do_settings_sections( 'sandbox_theme_social_options' ); ?>	
-					
+		
 			<?php submit_button(); ?>
+			
 		</form>
 		
 	</div><!-- /.wrap -->
