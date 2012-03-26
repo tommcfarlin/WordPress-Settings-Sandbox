@@ -133,7 +133,7 @@ function sandbox_initialize_theme_options() {
 	);
 	
 } // end sandbox_initialize_theme_options
-add_action('admin_init', 'sandbox_initialize_theme_options');
+add_action( 'admin_init', 'sandbox_initialize_theme_options' );
 
 /**
  * Initializes the theme's social optoions by registering the Sections,
@@ -228,7 +228,7 @@ function sandbox_toggle_header_callback($args) {
 	
 	// Next, we update the name attribute to access this element's ID in the context of the display options array
 	// We also access the show_header element of the options collection in the call to the checked() helper function
-	$html = '<input type="checkbox" id="show_header" name="sandbox_theme_display_options[show_header]" value="1" ' . checked(1, $options['show_header'], false) . '/>'; 
+	$html = '<input type="checkbox" id="show_header" name="sandbox_theme_display_options[show_header]" value="1" ' . checked( 1, $options['show_header'], false ) . '/>'; 
 	
 	// Here, we'll take the first argument of the array and add it to a label next to the checkbox
 	$html .= '<label for="show_header">&nbsp;'  . $args[0] . '</label>'; 
@@ -241,7 +241,7 @@ function sandbox_toggle_content_callback($args) {
 
 	$options = get_option('sandbox_theme_display_options');
 	
-	$html = '<input type="checkbox" id="show_content" name="sandbox_theme_display_options[show_content]" value="1" ' . checked(1, $options['show_content'], false) . '/>'; 
+	$html = '<input type="checkbox" id="show_content" name="sandbox_theme_display_options[show_content]" value="1" ' . checked( 1, $options['show_content'], false ) . '/>'; 
 	$html .= '<label for="show_content">&nbsp;'  . $args[0] . '</label>'; 
 	
 	echo $html;
@@ -252,7 +252,7 @@ function sandbox_toggle_footer_callback($args) {
 	
 	$options = get_option('sandbox_theme_display_options');
 	
-	$html = '<input type="checkbox" id="show_footer" name="sandbox_theme_display_options[show_footer]" value="1" ' . checked(1, $options['show_footer'], false) . '/>'; 
+	$html = '<input type="checkbox" id="show_footer" name="sandbox_theme_display_options[show_footer]" value="1" ' . checked( 1, $options['show_footer'], false ) . '/>'; 
 	$html .= '<label for="show_footer">&nbsp;'  . $args[0] . '</label>'; 
 	
 	echo $html;
@@ -267,11 +267,11 @@ function sandbox_twitter_callback() {
 	// Next, we need to make sure the element is defined in the options. If not, we'll set an empty string.
 	$url = '';
 	if( isset( $options['twitter'] ) ) {
-		$url = $options['twitter'];
+		$url = esc_url( $options['twitter'] );
 	} // end if
 	
 	// Render the output
-	echo '<input type="text" id="twitter" name="sandbox_theme_social_options[twitter]" value="' . $options['twitter'] . '" />';
+	echo '<input type="text" id="twitter" name="sandbox_theme_social_options[twitter]" value="' . $url . '" />';
 	
 } // end sandbox_twitter_callback
 
@@ -281,11 +281,11 @@ function sandbox_facebook_callback() {
 	
 	$url = '';
 	if( isset( $options['facebook'] ) ) {
-		$url = $options['facebook'];
+		$url = esc_url( $options['facebook'] );
 	} // end if
 	
 	// Render the output
-	echo '<input type="text" id="facebook" name="sandbox_theme_social_options[facebook]" value="' . $options['facebook'] . '" />';
+	echo '<input type="text" id="facebook" name="sandbox_theme_social_options[facebook]" value="' . $url . '" />';
 	
 } // end sandbox_facebook_callback
 
@@ -295,11 +295,11 @@ function sandbox_googleplus_callback() {
 	
 	$url = '';
 	if( isset( $options['googleplus'] ) ) {
-		$url = $options['googleplus'];
+		$url = esc_url( $options['googleplus'] );
 	} // end if
 	
 	// Render the output
-	echo '<input type="text" id="googleplus" name="sandbox_theme_social_options[googleplus]" value="' . $options['googleplus'] . '" />';
+	echo '<input type="text" id="googleplus" name="sandbox_theme_social_options[googleplus]" value="' . $url . '" />';
 	
 } // end sandbox_googleplus_callback
 

@@ -16,9 +16,9 @@
 		
 		<?php if( $display_options[ 'show_content' ] ) { ?>
 			<div id="content">
-				<?php echo $social_options['twitter'] ? '<a href="' . $social_options['twitter'] . '">Twitter</a>' : ''; ?>
-				<?php echo $social_options['facebook'] ? '<a href="' . $social_options['facebook'] . '">Facebook</a>' : ''; ?>
-				<?php echo $social_options['googleplus'] ? '<a href="' . $social_options['googleplus'] . '">Google+</a>' : ''; ?>
+				<?php echo $social_options['twitter'] ? '<a href="' . esc_url( $social_options['twitter'] ) . '">Twitter</a>' : ''; ?>
+				<?php echo $social_options['facebook'] ? '<a href="' . esc_url( $social_options['facebook'] ) . '">Facebook</a>' : ''; ?>
+				<?php echo $social_options['googleplus'] ? '<a href="' . esc_url( $social_options['googleplus'] ) . '">Google+</a>' : ''; ?>
 			</div><!-- /#content -->
 		<?php } // end if ?>
 		
