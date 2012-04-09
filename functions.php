@@ -1,28 +1,43 @@
 <?php
 
 /**
- * Authors Note
- * 3/20/2012: For current version in master:
- *
- * This tutorial will walk you through the process of introducing a new section of settings for theme options, but the article doesn't complete the process 
- * please read more in this comment thread[0]. Know that I'm aware of it, I apologize for not clarifying this in the article, and I'll have the full working 
- * version in the next article later this month!
- *
- * [0] http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-4-on-theme-options/#comment-18853
- */
-
-/**
- * This function introduces a single theme menu option into the WordPress 'Appearance'
- * menu.
+ * This function introduces the theme options into the 'Appearance' menu and into a top-level 
+ * 'Sandbox Theme' menu.
  */
 function sandbox_example_theme_menu() {
 
 	add_theme_page(
-		'Sandbox Theme', 			// The title to be displayed in the browser window for this page.
-		'Sandbox Theme',			// The text to be displayed for this menu item
-		'administrator',			// Which type of users can see this menu item
-		'sandbox_theme_options',	// The unique ID - that is, the slug - for this menu item
-		'sandbox_theme_display'		// The name of the function to call when rendering this menu's page
+		'Sandbox Theme', 					// The title to be displayed in the browser window for this page.
+		'Sandbox Theme',					// The text to be displayed for this menu item
+		'administrator',					// Which type of users can see this menu item
+		'sandbox_theme_options',			// The unique ID - that is, the slug - for this menu item
+		'sandbox_theme_display'				// The name of the function to call when rendering this menu's page
+	);
+	
+	add_menu_page(
+		'Sandbox Theme',					// The value used to populate the browser's title bar when the menu page is active
+		'Sandbox Theme',					// The text of the menu in the administrator's sidebar
+		'administrator',					// What roles are able to access the menu
+		'sandbox_theme_menu',				// The ID used to bind submenu items to this menu 
+		'sandbox_theme_display'				// The callback function used to render this menu
+	);
+	
+	add_submenu_page(
+		'sandbox_theme_menu',				// The ID of the top-level menu page to which this submenu item belongs
+		'Display Options',					// The value used to populate the browser's title bar when the menu page is active
+		'Display Options',					// The label of this submenu item displayed in the menu
+		'administrator',					// What roles are able to access this submenu item
+		'sandbox_theme_display_options',	// The ID used to represent this submenu item
+		'sandbox_theme_display'				// The callback function used to render the options for this submenu item
+	);
+	
+	add_submenu_page(
+		'sandbox_theme_menu',
+		'Social Options',
+		'Social Options',
+		'administrator',
+		'sandbox_theme_social_options',
+		create_function( null, 'sandbox_theme_display( "social_options" );' )
 	);
 
 } // end sandbox_example_theme_menu
@@ -31,7 +46,7 @@ add_action( 'admin_menu', 'sandbox_example_theme_menu' );
 /**
  * Renders a simple page to display for the theme menu defined above.
  */
-function sandbox_theme_display() {
+function sandbox_theme_display( $active_tab = '' ) {
 ?>
 	<!-- Create a header in the default WordPress 'wrap' container -->
 	<div class="wrap">
@@ -40,7 +55,13 @@ function sandbox_theme_display() {
 		<h2>Sandbox Theme Options</h2>
 		<?php settings_errors(); ?>
 		
-		<?php $active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'display_options'; ?>
+		<?php if( isset( $_GET[ 'tab' ] ) ) {
+			$active_tab = $_GET[ 'tab' ];
+		} else if( $active_tab == 'social_options' ) {
+			$active_tab = 'social_options';
+		} else {
+			$active_tab = 'display_options';
+		} // end if/else ?>
 		
 		<h2 class="nav-tab-wrapper">
 			<a href="?page=sandbox_theme_options&tab=display_options" class="nav-tab <?php echo $active_tab == 'display_options' ? 'nav-tab-active' : ''; ?>">Display Options</a>
@@ -334,6 +355,5 @@ function sandbox_theme_sanitize_social_options( $input ) {
 	return apply_filters( 'sandbox_theme_sanitize_social_options', $output, $input );
 
 } // end sandbox_theme_sanitize_social_options
-
 
 ?>
