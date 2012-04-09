@@ -35,10 +35,12 @@ If you're interested in downloading and installing this theme:
 ## Changelog
 
 _0.6 (April 9, 2012)_
+
 * Implementing top-level and submenu functionality
 * Adding README
 
 _0.5 (March 26, 2012)_
+
 * Improved coding conventions
 * Implemented tabbed navigation
 * Adding an author's note
@@ -46,6 +48,7 @@ _0.5 (March 26, 2012)_
 * Adding the sanitize callback
 
 _0.2 (March  6, 2012)_
+
 * Completing introduction of new options, social network integration, etc.
 * Moving all of the options to the new theme options page
 * Removing functions for plugin menu
