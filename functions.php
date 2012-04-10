@@ -39,6 +39,16 @@ function sandbox_example_theme_menu() {
 		'sandbox_theme_social_options',
 		create_function( null, 'sandbox_theme_display( "social_options" );' )
 	);
+	
+	add_submenu_page(
+		'sandbox_theme_menu',
+		'Input Examples',
+		'Input Examples',
+		'administrator',
+		'sandbox_theme_input_examples',
+		create_function( null, 'sandbox_theme_display( "input_examples" );' )
+	);
+
 
 } // end sandbox_example_theme_menu
 add_action( 'admin_menu', 'sandbox_example_theme_menu' );
@@ -59,6 +69,8 @@ function sandbox_theme_display( $active_tab = '' ) {
 			$active_tab = $_GET[ 'tab' ];
 		} else if( $active_tab == 'social_options' ) {
 			$active_tab = 'social_options';
+		} else if( $active_tab == 'input_examples' ) {
+			$active_tab = 'input_examples';
 		} else {
 			$active_tab = 'display_options';
 		} // end if/else ?>
@@ -66,6 +78,7 @@ function sandbox_theme_display( $active_tab = '' ) {
 		<h2 class="nav-tab-wrapper">
 			<a href="?page=sandbox_theme_options&tab=display_options" class="nav-tab <?php echo $active_tab == 'display_options' ? 'nav-tab-active' : ''; ?>">Display Options</a>
 			<a href="?page=sandbox_theme_options&tab=social_options" class="nav-tab <?php echo $active_tab == 'social_options' ? 'nav-tab-active' : ''; ?>">Social Options</a>
+			<a href="?page=sandbox_theme_options&tab=input_examples" class="nav-tab <?php echo $active_tab == 'input_examples' ? 'nav-tab-active' : ''; ?>">Input Examples</a>
 		</h2>
 		
 		<form method="post" action="options.php">
@@ -74,9 +87,12 @@ function sandbox_theme_display( $active_tab = '' ) {
 				if( $active_tab == 'display_options' ) {
 					settings_fields( 'sandbox_theme_display_options' );
 					do_settings_sections( 'sandbox_theme_display_options' );
-				} else {
+				} elseif( $active_tab == 'social_options' ) {
 					settings_fields( 'sandbox_theme_social_options' );
 					do_settings_sections( 'sandbox_theme_social_options' );
+				} else {
+					settings_fields( 'sandbox_theme_input_examples' );
+					do_settings_sections( 'sandbox_theme_input_examples' );
 				} // end if/else
 				
 				submit_button();
@@ -207,6 +223,22 @@ function sandbox_theme_intialize_social_options() {
 	
 } // end sandbox_theme_intialize_social_options
 add_action( 'admin_init', 'sandbox_theme_intialize_social_options' );
+
+/**
+ * Initializes the theme's input example by registering the Sections,
+ * Fields, and Settings. This particular group of options is used to demonstration
+ * validation and sanitization.
+ *
+ * This function is registered with the 'admin_init' hook.
+ */ 
+function sandbox_theme_initialize_input_examples() {
+
+	if( false == get_option( 'sandbox_theme_input_examples' ) ) {	
+		add_option( 'sandbox_theme_input_examples' );
+	} // end if
+
+} // end sandbox_theme_initialize_input_examples
+add_action( 'admin_init', 'sandbox_theme_initialize_input_examples' );
 
 /* ------------------------------------------------------------------------ *
  * Section Callbacks
