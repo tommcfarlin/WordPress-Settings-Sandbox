@@ -173,7 +173,7 @@ function sandbox_initialize_theme_options() {
 add_action( 'admin_init', 'sandbox_initialize_theme_options' );
 
 /**
- * Initializes the theme's social optoions by registering the Sections,
+ * Initializes the theme's social options by registering the Sections,
  * Fields, and Settings.
  *
  * This function is registered with the 'admin_init' hook.
@@ -248,6 +248,14 @@ function sandbox_theme_initialize_input_examples() {
 		'Input Element',						
 		'Input Element',							
 		'sandbox_input_element_callback',	
+		'sandbox_theme_input_examples',	
+		'input_examples_section'			
+	);
+	
+	add_settings_field(	
+		'Textarea Element',						
+		'Textarea Element',							
+		'sandbox_textarea_element_callback',	
 		'sandbox_theme_input_examples',	
 		'input_examples_section'			
 	);
@@ -395,6 +403,15 @@ function sandbox_input_element_callback() {
 	echo '<input type="text" id="input_example" name="sandbox_theme_input_examples[input_example]" value="' . $options['input_example'] . '" />';
 	
 } // end sandbox_input_element_callback
+
+function sandbox_textarea_element_callback() {
+	
+	$options = get_option( 'sandbox_theme_input_examples' );
+	
+	// Render the output
+	echo '<textarea id="textarea_example" name="sandbox_theme_input_examples[textarea_example]" rows="5" cols="50">' . $options['textarea_example'] . '</textarea>';
+	
+} // end sandbox_textarea_element_callback
 
 /* ------------------------------------------------------------------------ *
  * Setting Callbacks

@@ -32,6 +32,10 @@
 		<?php if( $input_examples[ 'input_example' ] ) { ?>
 			<?php echo sanitize_text_field( $input_examples['input_example'] ); ?>
 		<?php } // end if ?>
+
+		<?php if( $input_examples[ 'textarea_example' ] ) { ?>
+			<?php echo sanitize_text_field( $input_examples['textarea_example'] ); ?>
+		<?php } // end if ?>
 	
 	</body>
 </html>
