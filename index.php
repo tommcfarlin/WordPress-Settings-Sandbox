@@ -7,6 +7,7 @@
 	
 		<?php $display_options = get_option( 'sandbox_theme_display_options' ); ?>
 		<?php $social_options = get_option ( 'sandbox_theme_social_options' ); ?>
+		<?php $input_examples = get_option('sandbox_theme_input_examples'); ?>
 	
 		<?php if( $display_options[ 'show_header' ] ) { ?>
 			<div id="header">
@@ -26,6 +27,10 @@
 			<div id="footer">
 				<p>&copy; <?php echo date('Y'); ?> All Rights Reserved.</p>
 			</div><!-- /#footer -->
+		<?php } // end if ?>
+
+		<?php if( $input_examples[ 'input_example' ] ) { ?>
+			<?php echo sanitize_text_field( $input_examples['input_example'] ); ?>
 		<?php } // end if ?>
 	
 	</body>

@@ -237,6 +237,27 @@ function sandbox_theme_initialize_input_examples() {
 		add_option( 'sandbox_theme_input_examples' );
 	} // end if
 
+	add_settings_section(
+		'input_examples_section',
+		'Input Examples',
+		'sandbox_input_examples_callback',
+		'sandbox_theme_input_examples'
+	);
+	
+	add_settings_field(	
+		'Input Element',						
+		'Input Element',							
+		'sandbox_input_element_callback',	
+		'sandbox_theme_input_examples',	
+		'input_examples_section'			
+	);
+	
+	register_setting(
+		'sandbox_theme_input_examples',
+		'sandbox_theme_input_examples',
+		'sandbox_theme_validate_input_examples'
+	);
+
 } // end sandbox_theme_initialize_input_examples
 add_action( 'admin_init', 'sandbox_theme_initialize_input_examples' );
 
@@ -262,6 +283,16 @@ function sandbox_general_options_callback() {
  */
 function sandbox_social_options_callback() {
 	echo '<p>Provide the URL to the social networks you\'d like to display.</p>';
+} // end sandbox_general_options_callback
+
+/**
+ * This function provides a simple description for the Input Examples page.
+ *
+ * It's called from the 'sandbox_theme_intialize_input_examples_options' function by being passed as a parameter
+ * in the add_settings_section function.
+ */
+function sandbox_input_examples_callback() {
+	echo '<p>Provides examples of the five basic element types.</p>';
 } // end sandbox_general_options_callback
 
 /* ------------------------------------------------------------------------ *
@@ -356,6 +387,15 @@ function sandbox_googleplus_callback() {
 	
 } // end sandbox_googleplus_callback
 
+function sandbox_input_element_callback() {
+	
+	$options = get_option( 'sandbox_theme_input_examples' );
+	
+	// Render the output
+	echo '<input type="text" id="input_example" name="sandbox_theme_input_examples[input_example]" value="' . $options['input_example'] . '" />';
+	
+} // end sandbox_input_element_callback
+
 /* ------------------------------------------------------------------------ *
  * Setting Callbacks
  * ------------------------------------------------------------------------ */ 
@@ -387,5 +427,28 @@ function sandbox_theme_sanitize_social_options( $input ) {
 	return apply_filters( 'sandbox_theme_sanitize_social_options', $output, $input );
 
 } // end sandbox_theme_sanitize_social_options
+
+function sandbox_theme_validate_input_examples( $input ) {
+
+	// Create our array for storing the validated options
+	$output = array();
+	
+	// Loop through each of the incoming options
+	foreach( $input as $key => $value ) {
+		
+		// Check to see if the current option has a value. If so, process it.
+		if( isset( $input[$key] ) ) {
+		
+			// Strip all HTML and PHP tags and properly handle quoted strings
+			$output[$key] = strip_tags( stripslashes( $input[ $key ] ) );
+			
+		} // end if
+		
+	} // end foreach
+	
+	// Return the array processing any additional functions filtered by this action
+	return apply_filters( 'sandbox_theme_validate_input_examples', $output, $input );
+
+} // end sandbox_theme_validate_input_examples
 
 ?>
