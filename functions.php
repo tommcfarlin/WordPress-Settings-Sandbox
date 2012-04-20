@@ -85,14 +85,20 @@ function sandbox_theme_display( $active_tab = '' ) {
 			<?php
 			
 				if( $active_tab == 'display_options' ) {
+				
 					settings_fields( 'sandbox_theme_display_options' );
 					do_settings_sections( 'sandbox_theme_display_options' );
+					
 				} elseif( $active_tab == 'social_options' ) {
+				
 					settings_fields( 'sandbox_theme_social_options' );
 					do_settings_sections( 'sandbox_theme_social_options' );
+					
 				} else {
+				
 					settings_fields( 'sandbox_theme_input_examples' );
 					do_settings_sections( 'sandbox_theme_input_examples' );
+					
 				} // end if/else
 				
 				submit_button();
@@ -320,7 +326,7 @@ function sandbox_toggle_header_callback($args) {
 	
 	// Next, we update the name attribute to access this element's ID in the context of the display options array
 	// We also access the show_header element of the options collection in the call to the checked() helper function
-	$html = '<input type="checkbox" id="show_header" name="sandbox_theme_display_options[show_header]" value="1" ' . checked( 1, $options['show_header'], false ) . '/>'; 
+	$html = '<input type="checkbox" id="show_header" name="sandbox_theme_display_options[show_header]" value="1" ' . checked( 1, isset( $options['show_header'] ) ? $options['show_header'] : 0, false ) . '/>'; 
 	
 	// Here, we'll take the first argument of the array and add it to a label next to the checkbox
 	$html .= '<label for="show_header">&nbsp;'  . $args[0] . '</label>'; 
@@ -333,7 +339,7 @@ function sandbox_toggle_content_callback($args) {
 
 	$options = get_option('sandbox_theme_display_options');
 	
-	$html = '<input type="checkbox" id="show_content" name="sandbox_theme_display_options[show_content]" value="1" ' . checked( 1, $options['show_content'], false ) . '/>'; 
+	$html = '<input type="checkbox" id="show_content" name="sandbox_theme_display_options[show_content]" value="1" ' . checked( 1, isset( $options['show_content'] ) ? $options['show_content'] : 0, false ) . '/>'; 
 	$html .= '<label for="show_content">&nbsp;'  . $args[0] . '</label>'; 
 	
 	echo $html;
@@ -344,7 +350,7 @@ function sandbox_toggle_footer_callback($args) {
 	
 	$options = get_option('sandbox_theme_display_options');
 	
-	$html = '<input type="checkbox" id="show_footer" name="sandbox_theme_display_options[show_footer]" value="1" ' . checked( 1, $options['show_footer'], false ) . '/>'; 
+	$html = '<input type="checkbox" id="show_footer" name="sandbox_theme_display_options[show_footer]" value="1" ' . checked( 1, isset( $options['show_footer'] ) ? $options['show_footer'] : 0, false ) . '/>'; 
 	$html .= '<label for="show_footer">&nbsp;'  . $args[0] . '</label>'; 
 	
 	echo $html;
