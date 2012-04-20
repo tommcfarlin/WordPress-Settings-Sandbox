@@ -12,7 +12,7 @@ A simple WordPress Theme used to demonstrate the WordPress Settings API and rela
 3. [All About Menus](http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-3-all-about-menus/)
 4. [On Theme Options](http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-4-on-theme-options/)
 5. [Tabbed Navigation For Your Settings Page](http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-5-tabbed-navigation-for-your-settings-page/)
-6. Menu Pages.
+6. [Menu Pages](http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-6-menu-pages/).
 7. Elements, Validation, and Sanitization, Part 1
 8. Elements, Validation, and Sanitization, Part 2
 
@@ -33,6 +33,13 @@ If you're interested in downloading and installing this theme:
 * Feel free to submit any pull requests, though I'll likely decline them - this theme is closely aligned with content in [this series](http://wp.tutsplus.com/series/the-complete-guide-to-the-wordpress-settings-api/) and is likely written as is for a specific reason.
 
 ## Changelog
+
+_0.7 (April 20, 2012)_
+
+* Updating the README
+* Introducing a few new features for the upcoming article
+* Closing Issue 1
+* Closing Issue 2
 
 _0.6 (April 9, 2012)_
 
