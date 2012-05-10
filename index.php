@@ -23,19 +23,39 @@
 			</div><!-- /#content -->
 		<?php } // end if ?>
 		
-		<?php if( $display_options[ 'show_footer' ] ) { ?>
+		<?php if( $display_options['show_footer'] ) { ?>
 			<div id="footer">
-				<p>&copy; <?php echo date('Y'); ?> All Rights Reserved.</p>
+				<p>&copy; <?php echo date( 'Y' ); ?> All Rights Reserved.</p>
 			</div><!-- /#footer -->
 		<?php } // end if ?>
 
-		<?php if( $input_examples[ 'input_example' ] ) { ?>
+		<?php if( $input_examples['input_example'] ) { ?>
 			<?php echo sanitize_text_field( $input_examples['input_example'] ); ?>
 		<?php } // end if ?>
 
-		<?php if( $input_examples[ 'textarea_example' ] ) { ?>
+		<?php if( $input_examples['textarea_example'] ) { ?>
 			<?php echo sanitize_text_field( $input_examples['textarea_example'] ); ?>
 		<?php } // end if ?>
+		
+		<?php if( $input_examples['checkbox_example'] == '1' ) { ?>
+			<p>The checkbox has been checked.</p>
+		<?php } else { ?>
+			<p>The checkbox has not been checked.</p>
+		<?php } // end if  ?>
+		
+		<?php if( $input_examples['radio_example'] == 1 ) { ?>
+			<p>The first option was selected.</p>
+		<?php } elseif( $input_examples['radio_example'] == 2 ) { ?>
+			<p>The second option was selected.</p>
+		<?php } // end if  ?>
+		
+		<?php if( $input_examples['time_options'] == 'never' ) { ?>
+			<p>Never display this. Somewhat ironic to even show this.</p>
+		<?php } elseif( $input_examples['time_options'] == 'sometimes' ) { ?>
+			<p>Sometimes display this.</p>
+		<?php } elseif( $input_examples['time_options'] == 'always' ) { ?>
+			<p>Always display this.</p>
+		<?php } // end if/else ?>
 	
 	</body>
 </html>

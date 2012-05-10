@@ -18,7 +18,7 @@ A simple WordPress Theme used to demonstrate the WordPress Settings API and rela
 
 ## Checkout
 
-You can always checkout the latest version using [this URL](https://github.com/tommcfarlin/WordPress-Settings-Sandbox).
+You can always checkout the latest version at [this URL](https://github.com/tommcfarlin/WordPress-Settings-Sandbox).
 
 ## Install
 
@@ -30,7 +30,7 @@ If you're interested in downloading and installing this theme:
 ## Additional Notes
 
 * This theme is intended purely for demonstrating the Settings API and related functions. This should not be used as a foundation for other work or as a theme for blogging, content management, etc.
-* Feel free to submit any pull requests, though I'll likely decline them - this theme is closely aligned with content in [this series](http://wp.tutsplus.com/series/the-complete-guide-to-the-wordpress-settings-api/) and is likely written as is for a specific reason.
+* Feel free to submit any pull requests, though I'll likely decline them - this theme is closely aligned with content in [this series](http://wp.tutsplus.com/series/the-complete-guide-to-the-wordpress-settings-api/) and is likely written as-is for a specific reason.
 
 ## Changelog
 
