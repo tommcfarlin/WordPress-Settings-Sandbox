@@ -13,8 +13,8 @@ A simple WordPress Theme used to demonstrate the WordPress Settings API and rela
 4. [On Theme Options](http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-4-on-theme-options/)
 5. [Tabbed Navigation For Your Settings Page](http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-5-tabbed-navigation-for-your-settings-page/)
 6. [Menu Pages](http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-6-menu-pages/).
-7. Elements, Validation, and Sanitization, Part 1
-8. Elements, Validation, and Sanitization, Part 2
+7. [Validation, Sanitization, and Input I](http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-7-validation-sanitisation-and-input-i/)
+8. [Validation, Sanitization, and Input II](http://wp.tutsplus.com/tutorials/the-complete-guide-to-the-wordpress-settings-api-part-8-validation-sanitisation-and-input-ii/)
 
 ## Checkout
 
@@ -33,6 +33,12 @@ If you're interested in downloading and installing this theme:
 * Feel free to submit any pull requests, though I'll likely decline them - this theme is closely aligned with content in [this series](http://wp.tutsplus.com/series/the-complete-guide-to-the-wordpress-settings-api/) and is likely written as-is for a specific reason.
 
 ## Changelog
+
+_1.0 (May 11, 2012)_
+
+* Updating the README
+* Linking to the final two articles
+* Tagging the example code as final since the series has completed
 
 _0.7 (April 20, 2012)_
 
