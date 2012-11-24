@@ -24,8 +24,8 @@ function sandbox_example_theme_menu() {
 	
 	add_submenu_page(
 		'sandbox_theme_menu',				// The ID of the top-level menu page to which this submenu item belongs
-		'Display Options',					// The value used to populate the browser's title bar when the menu page is active
-		'Display Options',					// The label of this submenu item displayed in the menu
+		__( 'Display Options', 'sandbox' ),			// The value used to populate the browser's title bar when the menu page is active
+		__( 'Display Options', 'sandbox' ),					// The label of this submenu item displayed in the menu
 		'administrator',					// What roles are able to access this submenu item
 		'sandbox_theme_display_options',	// The ID used to represent this submenu item
 		'sandbox_theme_display'				// The callback function used to render the options for this submenu item
@@ -33,8 +33,8 @@ function sandbox_example_theme_menu() {
 	
 	add_submenu_page(
 		'sandbox_theme_menu',
-		'Social Options',
-		'Social Options',
+		__( 'Social Options', 'sandbox' ),
+		__( 'Social Options', 'sandbox' ),
 		'administrator',
 		'sandbox_theme_social_options',
 		create_function( null, 'sandbox_theme_display( "social_options" );' )
@@ -42,8 +42,8 @@ function sandbox_example_theme_menu() {
 	
 	add_submenu_page(
 		'sandbox_theme_menu',
-		'Input Examples',
-		'Input Examples',
+		__( 'Input Examples', 'sandbox' ),
+		__( 'Input Examples', 'sandbox' ),
 		'administrator',
 		'sandbox_theme_input_examples',
 		create_function( null, 'sandbox_theme_display( "input_examples" );' )
@@ -130,7 +130,7 @@ function sandbox_initialize_theme_options() {
 	// First, we register a section. This is necessary since all future options must belong to a 
 	add_settings_section(
 		'general_settings_section',			// ID used to identify this section and with which to register options
-		'Display Options',					// Title to be displayed on the administration page
+		__( 'Display Options', 'sandbox' ),		// Title to be displayed on the administration page
 		'sandbox_general_options_callback',	// Callback used to render the description of the section
 		'sandbox_theme_display_options'		// Page on which to add this section of options
 	);
@@ -138,34 +138,34 @@ function sandbox_initialize_theme_options() {
 	// Next, we'll introduce the fields for toggling the visibility of content elements.
 	add_settings_field(	
 		'show_header',						// ID used to identify the field throughout the theme
-		'Header',							// The label to the left of the option interface element
+		__( 'Header', 'sandbox' ),							// The label to the left of the option interface element
 		'sandbox_toggle_header_callback',	// The name of the function responsible for rendering the option interface
 		'sandbox_theme_display_options',	// The page on which this option will be displayed
 		'general_settings_section',			// The name of the section to which this field belongs
 		array(								// The array of arguments to pass to the callback. In this case, just a description.
-			'Activate this setting to display the header.'
+			__( 'Activate this setting to display the header.', 'sandbox' ),
 		)
 	);
 	
 	add_settings_field(	
 		'show_content',						
-		'Content',				
+		__( 'Content', 'sandbox' ),				
 		'sandbox_toggle_content_callback',	
 		'sandbox_theme_display_options',					
 		'general_settings_section',			
 		array(								
-			'Activate this setting to display the content.'
+			__( 'Activate this setting to display the content.', 'sandbox' ),
 		)
 	);
 	
 	add_settings_field(	
 		'show_footer',						
-		'Footer',				
+		__( 'Footer', 'sandbox' ),				
 		'sandbox_toggle_footer_callback',	
 		'sandbox_theme_display_options',		
 		'general_settings_section',			
 		array(								
-			'Activate this setting to display the footer.'
+			__( 'Activate this setting to display the footer.', 'sandbox' ),
 		)
 	);
 	
@@ -192,7 +192,7 @@ function sandbox_theme_intialize_social_options() {
 	
 	add_settings_section(
 		'social_settings_section',			// ID used to identify this section and with which to register options
-		'Social Options',					// Title to be displayed on the administration page
+		__( 'Social Options', 'sandbox' ),		// Title to be displayed on the administration page
 		'sandbox_social_options_callback',	// Callback used to render the description of the section
 		'sandbox_theme_social_options'		// Page on which to add this section of options
 	);
@@ -245,14 +245,14 @@ function sandbox_theme_initialize_input_examples() {
 
 	add_settings_section(
 		'input_examples_section',
-		'Input Examples',
+		__( 'Input Examples', 'sandbox' ),
 		'sandbox_input_examples_callback',
 		'sandbox_theme_input_examples'
 	);
 	
 	add_settings_field(	
 		'Input Element',						
-		'Input Element',							
+		__( 'Input Element', 'sandbox' ),							
 		'sandbox_input_element_callback',	
 		'sandbox_theme_input_examples',	
 		'input_examples_section'			
@@ -260,7 +260,7 @@ function sandbox_theme_initialize_input_examples() {
 	
 	add_settings_field(	
 		'Textarea Element',						
-		'Textarea Element',							
+		__( 'Textarea Element', 'sandbox' ),							
 		'sandbox_textarea_element_callback',	
 		'sandbox_theme_input_examples',	
 		'input_examples_section'			
@@ -268,7 +268,7 @@ function sandbox_theme_initialize_input_examples() {
 	
 	add_settings_field(
 		'Checkbox Element',
-		'Checkbox Element',
+		__( 'Checkbox Element', 'sandbox' ),
 		'sandbox_checkbox_element_callback',
 		'sandbox_theme_input_examples',
 		'input_examples_section'
@@ -276,7 +276,7 @@ function sandbox_theme_initialize_input_examples() {
 	
 	add_settings_field(
 		'Radio Button Elements',
-		'Radio Button Elements',
+		__( 'Radio Button Elements', 'sandbox' ),
 		'sandbox_radio_element_callback',
 		'sandbox_theme_input_examples',
 		'input_examples_section'
@@ -284,7 +284,7 @@ function sandbox_theme_initialize_input_examples() {
 	
 	add_settings_field(
 		'Select Element',
-		'Select Element',
+		__( 'Select Element', 'sandbox' ),
 		'sandbox_select_element_callback',
 		'sandbox_theme_input_examples',
 		'input_examples_section'
@@ -310,7 +310,7 @@ add_action( 'admin_init', 'sandbox_theme_initialize_input_examples' );
  * in the add_settings_section function.
  */
 function sandbox_general_options_callback() {
-	echo '<p>Select which areas of content you wish to display.</p>';
+	echo '<p>__( 'Select which areas of content you wish to display.', 'sandbox' )</p>';
 } // end sandbox_general_options_callback
 
 /**
@@ -320,7 +320,7 @@ function sandbox_general_options_callback() {
  * in the add_settings_section function.
  */
 function sandbox_social_options_callback() {
-	echo '<p>Provide the URL to the social networks you\'d like to display.</p>';
+	echo '<p>__( 'Provide the URL to the social networks you\'d like to display.', 'sandbox' )</p>';
 } // end sandbox_general_options_callback
 
 /**
@@ -330,7 +330,7 @@ function sandbox_social_options_callback() {
  * in the add_settings_section function.
  */
 function sandbox_input_examples_callback() {
-	echo '<p>Provides examples of the five basic element types.</p>';
+	echo '<p>__( 'Provides examples of the five basic element types.', 'sandbox' )</p>';
 } // end sandbox_general_options_callback
 
 /* ------------------------------------------------------------------------ *
@@ -473,10 +473,10 @@ function sandbox_select_element_callback() {
 	$options = get_option( 'sandbox_theme_input_examples' );
 	
 	$html = '<select id="time_options" name="sandbox_theme_input_examples[time_options]">';
-		$html .= '<option value="default">Select a time option...</option>';
-		$html .= '<option value="never"' . selected( $options['time_options'], 'never', false) . '>Never</option>';
-		$html .= '<option value="sometimes"' . selected( $options['time_options'], 'sometimes', false) . '>Sometimes</option>';
-		$html .= '<option value="always"' . selected( $options['time_options'], 'always', false) . '>Always</option>';
+		$html .= '<option value="default">__( 'Select a time option...', 'sandbox' )</option>';
+		$html .= '<option value="never"' . selected( $options['time_options'], 'never', false) . '>__( 'Never', 'sandbox' )</option>';
+		$html .= '<option value="sometimes"' . selected( $options['time_options'], 'sometimes', false) . '>__( 'Sometimes', 'sandbox' )</option>';
+		$html .= '<option value="always"' . selected( $options['time_options'], 'always', false) . '>__( 'Always', 'sandbox' )</option>';
 	$html .= '</select>';
 	
 	echo $html;
