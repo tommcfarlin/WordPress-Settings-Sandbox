@@ -62,7 +62,7 @@ function sandbox_theme_display( $active_tab = '' ) {
 	<div class="wrap">
 	
 		<div id="icon-themes" class="icon32"></div>
-		<h2>Sandbox Theme Options</h2>
+		<h2><?php _e( 'Sandbox Theme Options', 'sandbox' ); ?></h2>
 		<?php settings_errors(); ?>
 		
 		<?php if( isset( $_GET[ 'tab' ] ) ) {
@@ -76,9 +76,9 @@ function sandbox_theme_display( $active_tab = '' ) {
 		} // end if/else ?>
 		
 		<h2 class="nav-tab-wrapper">
-			<a href="?page=sandbox_theme_options&tab=display_options" class="nav-tab <?php echo $active_tab == 'display_options' ? 'nav-tab-active' : ''; ?>">Display Options</a>
-			<a href="?page=sandbox_theme_options&tab=social_options" class="nav-tab <?php echo $active_tab == 'social_options' ? 'nav-tab-active' : ''; ?>">Social Options</a>
-			<a href="?page=sandbox_theme_options&tab=input_examples" class="nav-tab <?php echo $active_tab == 'input_examples' ? 'nav-tab-active' : ''; ?>">Input Examples</a>
+			<a href="?page=sandbox_theme_options&tab=display_options" class="nav-tab <?php echo $active_tab == 'display_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Display Options', 'sandbox' ); ?></a>
+			<a href="?page=sandbox_theme_options&tab=social_options" class="nav-tab <?php echo $active_tab == 'social_options' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Social Options', 'sandbox' ); ?></a>
+			<a href="?page=sandbox_theme_options&tab=input_examples" class="nav-tab <?php echo $active_tab == 'input_examples' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Input Examples', 'sandbox' ); ?></a>
 		</h2>
 		
 		<form method="post" action="options.php">
@@ -310,7 +310,7 @@ add_action( 'admin_init', 'sandbox_theme_initialize_input_examples' );
  * in the add_settings_section function.
  */
 function sandbox_general_options_callback() {
-	echo '<p>__( 'Select which areas of content you wish to display.', 'sandbox' )</p>';
+	echo '<p>' . __( 'Select which areas of content you wish to display.', 'sandbox' ) . '</p>';
 } // end sandbox_general_options_callback
 
 /**
@@ -320,7 +320,7 @@ function sandbox_general_options_callback() {
  * in the add_settings_section function.
  */
 function sandbox_social_options_callback() {
-	echo '<p>__( 'Provide the URL to the social networks you\'d like to display.', 'sandbox' )</p>';
+	echo '<p>' . __( 'Provide the URL to the social networks you\'d like to display.', 'sandbox' ) . '</p>';
 } // end sandbox_general_options_callback
 
 /**
@@ -330,7 +330,8 @@ function sandbox_social_options_callback() {
  * in the add_settings_section function.
  */
 function sandbox_input_examples_callback() {
-	echo '<p>__( 'Provides examples of the five basic element types.', 'sandbox' )</p>';
+	echo '<p>' . __( 'Provides examples of the five basic element types.', 'sandbox' ) . '</p>';
+	echo '<p>' . __( 'Provides examples of the five basic element types.', 'sandbox' ) . '</p>';
 } // end sandbox_general_options_callback
 
 /* ------------------------------------------------------------------------ *
@@ -473,11 +474,10 @@ function sandbox_select_element_callback() {
 	$options = get_option( 'sandbox_theme_input_examples' );
 	
 	$html = '<select id="time_options" name="sandbox_theme_input_examples[time_options]">';
-		$html .= '<option value="default">__( 'Select a time option...', 'sandbox' )</option>';
-		$html .= '<option value="never"' . selected( $options['time_options'], 'never', false) . '>__( 'Never', 'sandbox' )</option>';
-		$html .= '<option value="sometimes"' . selected( $options['time_options'], 'sometimes', false) . '>__( 'Sometimes', 'sandbox' )</option>';
-		$html .= '<option value="always"' . selected( $options['time_options'], 'always', false) . '>__( 'Always', 'sandbox' )</option>';
-	$html .= '</select>';
+		$html .= '<option value="default">' . __( 'Select a time option...', 'sandbox' ) . '</option>';
+		$html .= '<option value="never"' . selected( $options['time_options'], 'never', false) . '>' . __( 'Never', 'sandbox' ) . '</option>';
+		$html .= '<option value="sometimes"' . selected( $options['time_options'], 'sometimes', false) . '>' . __( 'Sometimes', 'sandbox' ) . '</option>';
+		$html .= '<option value="always"' . selected( $options['time_options'], 'always', false) . '>' . __( 'Always', 'sandbox' ) . '</option>';	$html .= '</select>';
 	
 	echo $html;
 
