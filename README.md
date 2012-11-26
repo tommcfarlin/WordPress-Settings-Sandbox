@@ -1,7 +1,8 @@
 # WordPress Settings Sandbox
 
 * [Tom McFarlin](http://tommcfarlin.com)
-* *License.* GPL and MIT
+* [Project Page](http://tommcfarlin.com/wordpress-settings-api-example/)
+* *License.* GPL
 
 ## Summary
 
@@ -34,11 +35,12 @@ If you're interested in downloading and installing this theme:
 
 ## Changelog
 
-_1.0 (May 11, 2012)_
+_1.0 (November 25th, 2012)_
 
 * Updating the README
 * Linking to the final two articles
 * Tagging the example code as final since the series has completed
+* Accepting localization changes
 
 _0.7 (April 20, 2012)_
 
