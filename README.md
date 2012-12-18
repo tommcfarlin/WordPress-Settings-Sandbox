@@ -35,6 +35,12 @@ If you're interested in downloading and installing this theme:
 
 ## Changelog
 
+_1.1 (December 18th, 2012)_
+
+* Providing default values for the options
+* Minor style updates for the admin panel
+* Added a theme screenshot
+
 _1.0 (November 25th, 2012)_
 
 * Updating the README

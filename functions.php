@@ -114,6 +114,54 @@ function sandbox_theme_display( $active_tab = '' ) {
  * Setting Registration
  * ------------------------------------------------------------------------ */ 
 
+
+/**
+ * Provides default values for the Social Options.
+ */
+function sandbox_theme_default_social_options() {
+	
+	$defaults = array(
+		'twitter'		=>	'',
+		'facebook'		=>	'',
+		'googleplus'	=>	'',
+	);
+	
+	return apply_filters( 'sandbox_theme_default_social_options', $defaults );
+	
+} // end sandbox_theme_default_social_options
+
+/**
+ * Provides default values for the Display Options.
+ */
+function sandbox_theme_default_display_options() {
+	
+	$defaults = array(
+		'show_header'		=>	'',
+		'show_content'		=>	'',
+		'show_footer'		=>	'',
+	);
+	
+	return apply_filters( 'sandbox_theme_default_display_options', $defaults );
+	
+} // end sandbox_theme_default_display_options
+
+/**
+ * Provides default values for the Input Options.
+ */
+function sandbox_theme_default_input_options() {
+	
+	$defaults = array(
+		'input_example'		=>	'',
+		'textarea_example'	=>	'',
+		'checkbox_example'	=>	'',
+		'radio_example'		=>	'',
+		'time_options'		=>	'default'	
+	);
+	
+	return apply_filters( 'sandbox_theme_default_input_options', $defaults );
+	
+} // end sandbox_theme_default_input_options
+
 /**
  * Initializes the theme's display options page by registering the Sections,
  * Fields, and Settings.
@@ -124,7 +172,7 @@ function sandbox_initialize_theme_options() {
 
 	// If the theme options don't exist, create them.
 	if( false == get_option( 'sandbox_theme_display_options' ) ) {	
-		add_option( 'sandbox_theme_display_options' );
+		add_option( 'sandbox_theme_display_options', apply_filters( 'sandbox_theme_default_display_options', sandbox_theme_default_display_options() ) );
 	} // end if
 
 	// First, we register a section. This is necessary since all future options must belong to a 
@@ -187,7 +235,7 @@ add_action( 'admin_init', 'sandbox_initialize_theme_options' );
 function sandbox_theme_intialize_social_options() {
 
 	if( false == get_option( 'sandbox_theme_social_options' ) ) {	
-		add_option( 'sandbox_theme_social_options' );
+		add_option( 'sandbox_theme_social_options', apply_filters( 'sandbox_theme_default_social_options', sandbox_theme_default_social_option() ) );
 	} // end if
 	
 	add_settings_section(
@@ -240,7 +288,7 @@ add_action( 'admin_init', 'sandbox_theme_intialize_social_options' );
 function sandbox_theme_initialize_input_examples() {
 
 	if( false == get_option( 'sandbox_theme_input_examples' ) ) {	
-		add_option( 'sandbox_theme_input_examples' );
+		add_option( 'sandbox_theme_input_examples', apply_filters( 'sandbox_theme_default_input_options', sandbox_theme_default_input_options() ) );
 	} // end if
 
 	add_settings_section(
@@ -330,7 +378,6 @@ function sandbox_social_options_callback() {
  * in the add_settings_section function.
  */
 function sandbox_input_examples_callback() {
-	echo '<p>' . __( 'Provides examples of the five basic element types.', 'sandbox' ) . '</p>';
 	echo '<p>' . __( 'Provides examples of the five basic element types.', 'sandbox' ) . '</p>';
 } // end sandbox_general_options_callback
 
@@ -449,6 +496,7 @@ function sandbox_checkbox_element_callback() {
 	$options = get_option( 'sandbox_theme_input_examples' );
 	
 	$html = '<input type="checkbox" id="checkbox_example" name="sandbox_theme_input_examples[checkbox_example]" value="1"' . checked( 1, $options['checkbox_example'], false ) . '/>';
+	$html .= '&nbsp;';
 	$html .= '<label for="checkbox_example">This is an example of a checkbox</label>';
 	
 	echo $html;
@@ -460,9 +508,11 @@ function sandbox_radio_element_callback() {
 	$options = get_option( 'sandbox_theme_input_examples' );
 	
 	$html = '<input type="radio" id="radio_example_one" name="sandbox_theme_input_examples[radio_example]" value="1"' . checked( 1, $options['radio_example'], false ) . '/>';
+	$html .= '&nbsp;';
 	$html .= '<label for="radio_example_one">Option One</label>';
-	
+	$html .= '&nbsp;';
 	$html .= '<input type="radio" id="radio_example_two" name="sandbox_theme_input_examples[radio_example]" value="2"' . checked( 2, $options['radio_example'], false ) . '/>';
+	$html .= '&nbsp;';
 	$html .= '<label for="radio_example_two">Option Two</label>';
 	
 	echo $html;
@@ -487,7 +537,7 @@ function sandbox_select_element_callback() {
  * Setting Callbacks
  * ------------------------------------------------------------------------ */ 
  
- /**
+/**
  * Sanitization callback for the social options. Since each of the social options are text inputs,
  * this function loops through the incoming option and strips all tags and slashes from the value
  * before serializing it.
