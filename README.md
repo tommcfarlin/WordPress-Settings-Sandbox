@@ -35,6 +35,14 @@ If you're interested in downloading and installing this theme:
 
 ## Changelog
 
+_1.3 (Febuary 3rd, 2013)_
+
+* Fixed a minor typo that was causing a PHP memory time out error for one of the options.
+
+_1.2 (January 16th, 2013)_
+
+* Fixing some minor offset errors in the index template
+
 _1.1 (December 18th, 2012)_
 
 * Providing default values for the options

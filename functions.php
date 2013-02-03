@@ -235,7 +235,7 @@ add_action( 'admin_init', 'sandbox_initialize_theme_options' );
 function sandbox_theme_intialize_social_options() {
 
 	if( false == get_option( 'sandbox_theme_social_options' ) ) {	
-		add_option( 'sandbox_theme_social_options', apply_filters( 'sandbox_theme_default_social_options', sandbox_theme_default_social_option() ) );
+		add_option( 'sandbox_theme_social_options', apply_filters( 'sandbox_theme_default_social_options', sandbox_theme_default_social_options() ) );
 	} // end if
 	
 	add_settings_section(
