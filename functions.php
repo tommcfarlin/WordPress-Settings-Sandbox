@@ -232,7 +232,7 @@ add_action( 'admin_init', 'sandbox_initialize_theme_options' );
  *
  * This function is registered with the 'admin_init' hook.
  */ 
-function sandbox_theme_intialize_social_options() {
+function sandbox_theme_initialize_social_options() {
 
 	if( false == get_option( 'sandbox_theme_social_options' ) ) {	
 		add_option( 'sandbox_theme_social_options', apply_filters( 'sandbox_theme_default_social_options', sandbox_theme_default_social_options() ) );
@@ -275,8 +275,8 @@ function sandbox_theme_intialize_social_options() {
 		'sandbox_theme_sanitize_social_options'
 	);
 	
-} // end sandbox_theme_intialize_social_options
-add_action( 'admin_init', 'sandbox_theme_intialize_social_options' );
+} // end sandbox_theme_initialize_social_options
+add_action( 'admin_init', 'sandbox_theme_initialize_social_options' );
 
 /**
  * Initializes the theme's input example by registering the Sections,
@@ -364,7 +364,7 @@ function sandbox_general_options_callback() {
 /**
  * This function provides a simple description for the Social Options page. 
  *
- * It's called from the 'sandbox_theme_intialize_social_options' function by being passed as a parameter
+ * It's called from the 'sandbox_theme_initialize_social_options' function by being passed as a parameter
  * in the add_settings_section function.
  */
 function sandbox_social_options_callback() {
@@ -374,7 +374,7 @@ function sandbox_social_options_callback() {
 /**
  * This function provides a simple description for the Input Examples page.
  *
- * It's called from the 'sandbox_theme_intialize_input_examples_options' function by being passed as a parameter
+ * It's called from the 'sandbox_theme_initialize_input_examples_options' function by being passed as a parameter
  * in the add_settings_section function.
  */
 function sandbox_input_examples_callback() {
