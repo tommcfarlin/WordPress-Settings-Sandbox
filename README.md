@@ -35,7 +35,7 @@ If you're interested in downloading and installing this theme:
 
 ## Changelog
 
-_1.3 (Febuary 3rd, 2013)_
+_1.3 (February 3rd, 2013)_
 
 * Fixed a minor typo that was causing a PHP memory time out error for one of the options.
 
